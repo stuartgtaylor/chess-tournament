@@ -2,7 +2,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
-import django_countries
+from django_countries.fields import CountryField
 
 
 class Side(object):
@@ -36,7 +36,7 @@ post_save.connect(RefereeProfile.user_post_save, sender=User)
 
 class Player(models.Model):
     name = models.CharField(max_length=128)
-    country = django_countries.CountryField()
+    country = CountryField()
     rating = models.IntegerField()
     fide_id = models.IntegerField(blank=True, null=True, default=None)
     fide_games = models.IntegerField(blank=True, null=True, default=None)
